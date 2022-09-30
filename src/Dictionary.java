@@ -12,13 +12,13 @@ public class Dictionary{
 	}//end constructor
 	
 	public void loadDictionary(String key, String value) throws FileNotFoundException {
-		Scanner scan = new Scanner(System.in); //reading from text file
-		File file = new File("C:\\Users\\mokel\\Downloads\\DictionaryWordValuePairs.txt"); //i took this file for example. You can mention your file path here
-		scan = new Scanner(file); //input will read file
-		Dictionary myMap = new Dictionary(); //hashmap where data will store
+		Scanner scan = new Scanner(System.in); 
+		File file = new File("C:\\Users\\mokel\\Downloads\\DictionaryWordValuePairs.txt"); 
+		scan = new Scanner(file);
+		Dictionary myMap = new Dictionary(); 
 		
 		while (scan.hasNextLine()) 
-		{ //while data is there in the file
+		{ 
 		key = scan.nextLine();//get the key 
 		value = scan.nextLine();//get the value
 		}//end while loop
