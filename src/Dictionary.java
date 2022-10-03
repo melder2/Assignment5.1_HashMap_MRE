@@ -1,41 +1,50 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Dictionary{
-	private HashMap<String, String> myMap;
+	private HashMap<Integer, String> myMap;
 	
 	public Dictionary() {
-		HashMap<String, String> myMap = new HashMap<String, String>();
+		HashMap<Integer, String> myMap = new HashMap<Integer, String>();
 	}//end constructor
 	
-	public void loadDictionary(String key, String value) throws FileNotFoundException {
-		Scanner scan = new Scanner(System.in); 
-		File file = new File("C:\\Users\\mokel\\Downloads\\DictionaryWordValuePairs.txt"); 
-		scan = new Scanner(file);
-		Dictionary myMap = new Dictionary(); 
+	public HashMap<Integer, String> loadDictionary(File xfile) throws NumberFormatException, IOException {
+
+		HashMap<Integer, String> myMap = new HashMap<Integer, String>();
+			xfile = new File("C:\\Users\\mokel\\Downloads\\DictionaryWordValuePairs.txt");
+			BufferedReader br = null;
+			br = new BufferedReader(new FileReader(xfile));
+			String line = null;
+	
+			while ((line = br.readLine()) != null) 
+			{ 
+			String []array = line.split(":");
+			Integer key = Integer.parseInt(array[0].trim());//get the key 
+			String value = array[1].trim();//get the value
+			if(!key.equals("") && !value.equals(""))
+				myMap.put(key, value);
+			}
+			br.close();
+		return myMap;	
 		
-		while (scan.hasNextLine()) 
-		{ 
-		key = scan.nextLine();//get the key 
-		value = scan.nextLine();//get the value
-		}//end while loop
-		System.out.printf(key, value);
 	}//end loadDictionary
 	
-	public void searchDictionary(String search, String value) {
-		for(int c = 0; c < 436; c++) {
-			myMap.get(search);
-		if(search == null) {
-			return;
-		}
-		}//end for loop
+	public void searchDictionary(String search) {
+		search.hashCode();
+		myMap.get(search);
+		
 	}//end searchDirectory
 	
 	public void printDictionary() {
-		return myMap<String, String>();
+		for(Entry<Integer, String> entry : myMap.entrySet())
+			System.out.println("Key: " + entry.getKey() + " , Value: " + entry.getValue());
 	}//end printDictionary
 	
 }//end class
